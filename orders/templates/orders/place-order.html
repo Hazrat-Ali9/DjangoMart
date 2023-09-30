@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body%}
+<div class="container">
+
+
+
+<!-- ============================ COMPONENT 2 ================================= -->
+<div class="row">
+<main class="col-md-8">
+
+<article class="card mb-4">
+<div class="card-body">
+	<h4 class="card-title mb-4">Review cart</h4>
+	<div class="row">
+		{% for item in cart_items%}
+		<div class="col-md-12">
+			<figure class="itemside  mb-4">
+				<div class="aside"><img src="{{item.product.image.url}}" class="border img-sm"></div>
+				<figcaption class="info">
+					<p>{{item.product.product_name}} </p>
+					<p>Category : {{item.product.category.category_name}} </p>
+					<span class="text-muted">{{item.quantity}}x{{item.product.price}} = ${{item.sub_total}} </span>
+				</figcaption>
+			</figure>
+		</div> <!-- col.// -->
+		{% endfor %}
+	</div> <!-- row.// -->
+</div> <!-- card-body.// -->
+</article> <!-- card.// -->
+
+
+<article class="card mb-4">
+<div class="card">
+  <div class="card-body">
+    <h4 class="card-title mb-4">Billing Address</h4>
+    <form method="post">
+		{% csrf_token %}
+      <div class="form-row">
+        <div class="col form-group">
+          <label for="">First Name</label>
+          <input type="text" name="first_name" class="form-control" required>
+        </div>
+        <div class="col form-group">
+          <label for="">Last Name</label>
+          <input type="text" name="last_name" class="form-control" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col form-group">
+          <label for="">Email</label>
+          <input type="email" name="email" class="form-control" required>
+        </div>
+        <div class="col form-group">
+          <label for="">Phone Number</label>
+          <input type="text" name="phone" class="form-control" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col form-group">
+          <label for="">Address Line 1</label>
+          <input type="text" name="address_line1" class="form-control" required>
+        </div>
+        <div class="col form-group">
+          <label for="">Address Line 2</label>
+          <input type="text" name="address_line2" class="form-control">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col form-group">
+          <label for="">City</label>
+          <input type="text" name="city" class="form-control" required>
+        </div>
+        <div class="col form-group">
+          <label for="">State</label>
+          <input type="text" name="state" class="form-control" required>
+        </div>
+        <div class="col form-group">
+          <label for="">Country</label>
+          <input type="text" name="country" class="form-control" required>
+        </div>
+        </div>
+        <div class="form-row">
+          <label for="">Order Note</label>
+          <textarea name="order_note" rows="2" class="form-control"></textarea>
+        </div>
+
+
+  </div>
+</div> 
+</article> <!-- card.// -->
+
+
+
+<!-- accordion end.// -->
+  
+		</main> <!-- col.// -->
+		<aside class="col-md-4">
+			<div class="card">
+		<div class="card-body">
+			<dl class="dlist-align">
+			  <dt>Total price:</dt>
+			  <dd class="text-right">${{total}}</dd>
+			</dl>
+			<dl class="dlist-align">
+			  <dt>Tax:</dt>
+			  <dd class="text-right"> ${{tax}}</dd>
+			</dl>
+			<dl class="dlist-align">
+			  <dt>Total:</dt>
+			  <dd class="text-right text-dark b"><strong>${{grand_total}}</strong></dd>
+			</dl>
+			<hr>
+			<p class="text-center mb-3">
+				<img src="{% static 'images/misc/payments.png'%}" height="26">
+			</p>
+			<button type="submit" class="btn btn-primary btn-block" > Place Order </button>
+		</form>	
+		</div> <!-- card-body.// -->
+		</div> <!-- card.// -->
+		</aside> <!-- col.// -->
+	</div> <!-- row.// -->
+
+</div> <!-- container .//  -->
+{% endblock %}
