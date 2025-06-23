@@ -1,5 +1,5 @@
 // some scripts
-
+// script js
 // jquery ready start
 $(document).ready(function() {
 	// jQuery code
