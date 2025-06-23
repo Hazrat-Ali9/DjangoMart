@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from store.models import Product
 # Create your models here.
-
+# models py
 class Payment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     payment_id = models.CharField(max_length= 100)
